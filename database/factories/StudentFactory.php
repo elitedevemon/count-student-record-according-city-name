@@ -22,7 +22,8 @@ class StudentFactory extends Factory
       "email" => $this->faker->safeEmail,
       "phone" => $this->faker->phoneNumber,
       "class" => $this->faker->numberBetween(1, 10),
-      "city_id" => $this->faker->numberBetween(1, 20)
+      "role" => "student",
+      "city_id" => $this->faker->numberBetween(1, 5)
     ];
   }
 }

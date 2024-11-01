@@ -14,10 +14,11 @@ class StudentRecordCountController extends Controller
   public function __invoke(Request $request)
   {
     // check the relations
-    $students = Student::with('city')
-      ->select(DB::raw('count(*) as student_count'), 'city_id')
+    $students = Student::with('city:id,city_name')
+      ->selectRaw('count(*) as student_count, city_id')
       ->groupBy('city_id')
-      ->get();
+      ->havingRaw('city_id > ?', [3])
+      ->toSql();
 
     return $students;
 
